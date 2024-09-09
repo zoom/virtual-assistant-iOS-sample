@@ -1,0 +1,36 @@
+# Ignore macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# iOS specific
+ios-sample/Pods/
+ios-sample/Podfile.lock
+ios-sample/*.xcworkspace
+ios-sample/*.xcodeproj/xcuserdata/
+ios-sample/*.xcodeproj/project.xcworkspace/
+ios-sample/*.xcodeproj/xcshareddata/
+ios-sample/*.xcuserdata/
+ios-sample/build/
+ios-sample/DerivedData/
+ios-sample/*.DS_Store
+
+# Android specific
+android-sample/.gradle/
+android-sample/local.properties
+android-sample/.idea/
+android-sample/build/
+android-sample/app/build/
+android-sample/app/.cxx/
+android-sample/*.iml
+android-sample/app/*.iml
+
+# Ignore Node.js dependency folder if applicable
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# General backup files
+*.swp
+*.swo
+*~ 

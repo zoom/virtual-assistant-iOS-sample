@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4D047F202C2D428000844DAC /* UIView+ZMWebSDKExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D047F1F2C2D428000844DAC /* UIView+ZMWebSDKExtensions.m */; };
+		4DBBF74827F30F12009C691F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBBF74727F30F12009C691F /* AppDelegate.m */; };
+		4DBBF74E27F30F12009C691F /* ZMWebDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBBF74D27F30F12009C691F /* ZMWebDemoViewController.m */; };
+		4DBBF75127F30F12009C691F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DBBF74F27F30F12009C691F /* Main.storyboard */; };
+		4DBBF75327F30F14009C691F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBBF75227F30F14009C691F /* Assets.xcassets */; };
+		4DBBF75627F30F14009C691F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DBBF75427F30F14009C691F /* LaunchScreen.storyboard */; };
+		4DBBF75927F30F14009C691F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBBF75827F30F14009C691F /* main.m */; };
+		4DD499D22BF5B3620032DE35 /* ZMLiveSDKWebviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD499D02BF5B3620032DE35 /* ZMLiveSDKWebviewController.m */; };
+		4DD49A072BF721120032DE35 /* ZMLiveSDKWebviewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD49A062BF721120032DE35 /* ZMLiveSDKWebviewControllerSwift.swift */; };
+		4DE504F52840C2750072E770 /* ZMDemoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE504F42840C2750072E770 /* ZMDemoButton.m */; };
+		4DEB44092C324FEE002FBBC4 /* ZMWebDemoHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB44082C324FEE002FBBC4 /* ZMWebDemoHomeViewController.m */; };
+		4DF0659E2C3275C3004CF26C /* ZMWebBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0659D2C3275C3004CF26C /* ZMWebBaseViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4DBBF79D27F3F1D2009C691F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5E61950282B7FDB007EA627 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4D047F1E2C2D428000844DAC /* UIView+ZMWebSDKExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZMWebSDKExtensions.h"; sourceTree = "<group>"; };
+		4D047F1F2C2D428000844DAC /* UIView+ZMWebSDKExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZMWebSDKExtensions.m"; sourceTree = "<group>"; };
+		4DBBF74327F30F12009C691F /* ZoomWebSDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZoomWebSDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DBBF74627F30F12009C691F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4DBBF74727F30F12009C691F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4DBBF74C27F30F12009C691F /* ZMWebDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMWebDemoViewController.h; sourceTree = "<group>"; };
+		4DBBF74D27F30F12009C691F /* ZMWebDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMWebDemoViewController.m; sourceTree = "<group>"; };
+		4DBBF75027F30F12009C691F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4DBBF75227F30F14009C691F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4DBBF75527F30F14009C691F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4DBBF75727F30F14009C691F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DBBF75827F30F14009C691F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4DD499D02BF5B3620032DE35 /* ZMLiveSDKWebviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMLiveSDKWebviewController.m; sourceTree = "<group>"; };
+		4DD499D12BF5B3620032DE35 /* ZMLiveSDKWebviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMLiveSDKWebviewController.h; sourceTree = "<group>"; };
+		4DD49A052BF721110032DE35 /* ZoomWebSDKSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZoomWebSDKSample-Bridging-Header.h"; sourceTree = "<group>"; };
+		4DD49A062BF721120032DE35 /* ZMLiveSDKWebviewControllerSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZMLiveSDKWebviewControllerSwift.swift; sourceTree = "<group>"; };
+		4DE504F32840C2750072E770 /* ZMDemoButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMDemoButton.h; sourceTree = "<group>"; };
+		4DE504F42840C2750072E770 /* ZMDemoButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMDemoButton.m; sourceTree = "<group>"; };
+		4DEB44072C324FEE002FBBC4 /* ZMWebDemoHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMWebDemoHomeViewController.h; sourceTree = "<group>"; };
+		4DEB44082C324FEE002FBBC4 /* ZMWebDemoHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMWebDemoHomeViewController.m; sourceTree = "<group>"; };
+		4DF0659C2C3275C3004CF26C /* ZMWebBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMWebBaseViewController.h; sourceTree = "<group>"; };
+		4DF0659D2C3275C3004CF26C /* ZMWebBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMWebBaseViewController.m; sourceTree = "<group>"; };
+		D5E6195F282B9236007EA627 /* ZoomWebSDKSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZoomWebSDKSample.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4DBBF74027F30F12009C691F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4DBBF73A27F30F12009C691F = {
+			isa = PBXGroup;
+			children = (
+				4DBBF74527F30F12009C691F /* ZoomWebSDKSample */,
+				4DBBF74427F30F12009C691F /* Products */,
+				4DBBF79927F3F1D2009C691F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4DBBF74427F30F12009C691F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4DBBF74327F30F12009C691F /* ZoomWebSDKSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4DBBF74527F30F12009C691F /* ZoomWebSDKSample */ = {
+			isa = PBXGroup;
+			children = (
+				4D047F1E2C2D428000844DAC /* UIView+ZMWebSDKExtensions.h */,
+				4D047F1F2C2D428000844DAC /* UIView+ZMWebSDKExtensions.m */,
+				4DD499CF2BF5B3400032DE35 /* WebConponents */,
+				D5E6195F282B9236007EA627 /* ZoomWebSDKSample.entitlements */,
+				4DBBF74627F30F12009C691F /* AppDelegate.h */,
+				4DBBF74727F30F12009C691F /* AppDelegate.m */,
+				4DF0659C2C3275C3004CF26C /* ZMWebBaseViewController.h */,
+				4DF0659D2C3275C3004CF26C /* ZMWebBaseViewController.m */,
+				4DEB44072C324FEE002FBBC4 /* ZMWebDemoHomeViewController.h */,
+				4DEB44082C324FEE002FBBC4 /* ZMWebDemoHomeViewController.m */,
+				4DBBF74C27F30F12009C691F /* ZMWebDemoViewController.h */,
+				4DBBF74D27F30F12009C691F /* ZMWebDemoViewController.m */,
+				4DBBF74F27F30F12009C691F /* Main.storyboard */,
+				4DBBF75227F30F14009C691F /* Assets.xcassets */,
+				4DBBF75427F30F14009C691F /* LaunchScreen.storyboard */,
+				4DBBF75727F30F14009C691F /* Info.plist */,
+				4DBBF75827F30F14009C691F /* main.m */,
+				4DE504F32840C2750072E770 /* ZMDemoButton.h */,
+				4DE504F42840C2750072E770 /* ZMDemoButton.m */,
+			);
+			path = ZoomWebSDKSample;
+			sourceTree = "<group>";
+		};
+		4DBBF79927F3F1D2009C691F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4DD499CF2BF5B3400032DE35 /* WebConponents */ = {
+			isa = PBXGroup;
+			children = (
+				4DD499D12BF5B3620032DE35 /* ZMLiveSDKWebviewController.h */,
+				4DD499D02BF5B3620032DE35 /* ZMLiveSDKWebviewController.m */,
+				4DD49A062BF721120032DE35 /* ZMLiveSDKWebviewControllerSwift.swift */,
+				4DD49A052BF721110032DE35 /* ZoomWebSDKSample-Bridging-Header.h */,
+			);
+			path = WebConponents;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4DBBF74227F30F12009C691F /* ZoomWebSDKSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4DBBF77227F30F15009C691F /* Build configuration list for PBXNativeTarget "ZoomWebSDKSample" */;
+			buildPhases = (
+				4DBBF73F27F30F12009C691F /* Sources */,
+				4DBBF74027F30F12009C691F /* Frameworks */,
+				4DBBF74127F30F12009C691F /* Resources */,
+				4DBBF79D27F3F1D2009C691F /* Embed Frameworks */,
+				D5E61950282B7FDB007EA627 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZoomWebSDKSample;
+			productName = ZoomCCSample;
+			productReference = 4DBBF74327F30F12009C691F /* ZoomWebSDKSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4DBBF73B27F30F12009C691F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					4DBBF74227F30F12009C691F = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1520;
+					};
+				};
+			};
+			buildConfigurationList = 4DBBF73E27F30F12009C691F /* Build configuration list for PBXProject "ZoomWebSDKSample" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4DBBF73A27F30F12009C691F;
+			productRefGroup = 4DBBF74427F30F12009C691F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4DBBF74227F30F12009C691F /* ZoomWebSDKSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4DBBF74127F30F12009C691F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DBBF75627F30F14009C691F /* LaunchScreen.storyboard in Resources */,
+				4DBBF75327F30F14009C691F /* Assets.xcassets in Resources */,
+				4DBBF75127F30F12009C691F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4DBBF73F27F30F12009C691F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DD49A072BF721120032DE35 /* ZMLiveSDKWebviewControllerSwift.swift in Sources */,
+				4DBBF74E27F30F12009C691F /* ZMWebDemoViewController.m in Sources */,
+				4DE504F52840C2750072E770 /* ZMDemoButton.m in Sources */,
+				4D047F202C2D428000844DAC /* UIView+ZMWebSDKExtensions.m in Sources */,
+				4DBBF74827F30F12009C691F /* AppDelegate.m in Sources */,
+				4DEB44092C324FEE002FBBC4 /* ZMWebDemoHomeViewController.m in Sources */,
+				4DBBF75927F30F14009C691F /* main.m in Sources */,
+				4DF0659E2C3275C3004CF26C /* ZMWebBaseViewController.m in Sources */,
+				4DD499D22BF5B3620032DE35 /* ZMLiveSDKWebviewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4DBBF74F27F30F12009C691F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DBBF75027F30F12009C691F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4DBBF75427F30F14009C691F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DBBF75527F30F14009C691F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4DBBF77027F30F15009C691F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4DBBF77127F30F15009C691F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4DBBF77327F30F15009C691F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ZoomWebSDKSample/ZoomWebSDKSample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = armv7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZoomWebSDKSample/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to your camera.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "request audio privacy";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need access to your album.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_MAP_FILE_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION=YES";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ZoomWebSDKSample/WebConponents/ZoomWebSDKSample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../bin/**";
+			};
+			name = Debug;
+		};
+		4DBBF77427F30F15009C691F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ZoomWebSDKSample/ZoomWebSDKSample.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = armv7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZoomWebSDKSample/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to your camera.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "request audio privacy";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need access to your album.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_MAP_FILE_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION=YES";
+				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ZoomWebSDKSample/WebConponents/ZoomWebSDKSample-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../bin/**";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4DBBF73E27F30F12009C691F /* Build configuration list for PBXProject "ZoomWebSDKSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DBBF77027F30F15009C691F /* Debug */,
+				4DBBF77127F30F15009C691F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4DBBF77227F30F15009C691F /* Build configuration list for PBXNativeTarget "ZoomWebSDKSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DBBF77327F30F15009C691F /* Debug */,
+				4DBBF77427F30F15009C691F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4DBBF73B27F30F12009C691F /* Project object */;
+}
