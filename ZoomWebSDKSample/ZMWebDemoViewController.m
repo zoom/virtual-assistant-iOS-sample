@@ -106,21 +106,28 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-// This case demonstrates when the WebView notifies native logic to open a URL. The JS message will be received by the native method "userContentController: didReceiveScriptMessage:" in the ZMLiveSDKWebviewController class. The native logic will handle the "cmd" JSON to handle the URL opening. Since openURLInSystemBrowser is set to YES, the inner logic in ZMLiveSDKWebviewController will open it in the browser.
+/** This case demonstrates when the WebView notifies native logic to open a URL. The JS message will be received by the native method "userContentController: didReceiveScriptMessage:" in the ZMLiveSDKWebviewController class. The native logic will handle the "cmd" JSON to handle the URL opening. Since openURLInSystemBrowser is set to YES, the inner logic in ZMLiveSDKWebviewController will open it in the browser.
+ 
+    Additionally, the command "openURL" of data format {"cmd":"openURL", "value":"https://zoom.us"} has been deprecated. We recommend our developers to use the dom element like <a href="https://www.example.com" target="_blank">Open in New Tab</a> to open the URL in a new tab, like a WebView controller or the system Webview browser. Or to use "window.open" in js context for the opening purpose.
+ */
+
 - (void)openCampaignChatDemoPage_openLinkInBrowser:(NSString *)url {
     ZMWebviewConfiguration *config = [[ZMWebviewConfiguration alloc] init];
     ZMLiveSDKWebviewController *vc = [[ZMLiveSDKWebviewController alloc] initWithURL:url webviewConfiguration:config];
     
-    //When openURLInSystemBrowser set to YES, and when received openURL command from js, we will open the URL in system browser.
+    // When openURLInSystemBrowser set to YES, we will open the URL in system browser.
     vc.openURLInSystemBrowser = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-// This case demonstrates when the WebView notifies native logic to open a URL. The JS message will be received by the native method "userContentController: didReceiveScriptMessage:" in the ZMLiveSDKWebviewController class. The native logic will handle the "cmd" JSON to handle the URL opening. Since openURLInSystemBrowser is set to NO, the inner logic in ZMLiveSDKWebviewController will open it in a new WebViewController like SFSafariViewController.
+/** This case demonstrates when the WebView notifies native logic to open a URL. The JS message will be received by the native method "userContentController: didReceiveScriptMessage:" in the ZMLiveSDKWebviewController class. The native logic will handle the "cmd" JSON to handle the URL opening. Since openURLInSystemBrowser is set to NO, the inner logic in ZMLiveSDKWebviewController will open it in a new WebViewController like SFSafariViewController.
+ 
+    Additionally, the command "openURL" of data format {"cmd":"openURL", "value":"https://zoom.us"} has been deprecated. We recommend our developers to use the dom element like <a href="https://www.example.com" target="_blank">Open in New Tab</a> to open the URL in a new tab, like a WebView controller or the system Webview browser. Or to use "window.open" in js context for the opening purpose.
+ */
 - (void)openCampaignChatDemoPage_openLinkInSeperateViewController:(NSString *)url {
     ZMWebviewConfiguration *config = [[ZMWebviewConfiguration alloc] init];
     ZMLiveSDKWebviewController *vc = [[ZMLiveSDKWebviewController alloc] initWithURL:url webviewConfiguration:config];
-    //When openURLInSystemBrowser set to NO, and when received openURL command from js, we will open the URL in a new created WebViewController like SFSafariviewController.
+    //When openURLInSystemBrowser set to NO, we will open the URL in a new created WebViewController like SFSafariviewController.
     vc.openURLInSystemBrowser = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }

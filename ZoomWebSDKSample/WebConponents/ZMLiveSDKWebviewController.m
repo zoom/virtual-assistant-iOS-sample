@@ -39,6 +39,21 @@
     /*
     Create an exit message handler to handle the case where the JavaScript context needs to pop to the previous page in the host app.
     Also, create a common message handler to handle commands from the JavaScript context. The command message will be a JSON formatted string containing keys "cmd" and "value". Both key values are strings. The value can be a simple string or a JSON string, depending on the command type. Currently, we support one command in JSON format like {"cmd":"openURL", "value":"https://zoom.us"}. When such a message is received, developers should open a new view controller to load the URL in the value "https://zoom.us". The demo code shows several ways to process the message in the WKWebView delegate method: - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message.
+     
+     Additionally, the command "openURL" of data format {"cmd":"openURL", "value":"https://zoom.us"} has been deprecated. We recommend our developers to use the dom element like <a href=\"https://www.example.com\" target=\"_blank\">Open in New Tab</a> to open the URL in a new tab, like a WebView controller or the system Webview browser. Or to use "window.open" in js context for the opening purpose. Thus the exitHandlerScriptStr could be like below:
+     
+     NSString *exitHandlerScriptStr =
+     @"window.addEventListener('zoomCampaignSdk:ready', () => {"
+       "if (window.zoomCampaignSdk) { "
+         "window.zoomCampaignSdk.native = {"
+           "exitHandler: {"
+             "handle: function() {"
+               "window.webkit.messageHandlers.zoomLiveSDKMessageHandler.postMessage('close_web_vc');"
+             "}"
+           "},"
+         "}"
+       "}"
+     "})";
      */
     
     NSString *exitHandlerScriptStr =
@@ -58,6 +73,7 @@
         "}"
       "}"
     "})";
+    
     WKUserScript *exitScript = [[WKUserScript alloc] initWithSource:exitHandlerScriptStr injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:true];
     [userContentController addUserScript:exitScript];
     
@@ -197,10 +213,19 @@
 //When logic "windown.open" excuted in js context, this callback will be recevied.
 - (nullable WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
 {
-    if (navigationAction.request.URL && [[UIApplication sharedApplication] canOpenURL:navigationAction.request.URL]) {
-        if (@available(iOS 10.0, *)) {
-            NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@NO};
-            [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:options completionHandler:nil];
+    if (navigationAction.request.URL) {
+        if (self.openURLInSystemBrowser) {
+            if ([[UIApplication sharedApplication] canOpenURL:navigationAction.request.URL]) {
+                NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@NO};
+                [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:options completionHandler:nil];
+            }
+            else {
+                NSLog(@"error, cannot open the navigationAction url");
+            }
+        }
+        else {
+            SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:navigationAction.request.URL];
+            [self.navigationController presentViewController:safariVC animated:YES completion:nil];
         }
     }
     return nil;
@@ -216,6 +241,16 @@
         }
     }
     
+    // For specific URLS, like the URL with scheme "tel", as the WKWebview has no default process logic, here we need to hanlde it ourselves. We should judge the scheme is not "https" and not "http" firstly, then use system method to handle URL.
+    NSString *urlScheme = [navigationAction.request.URL.scheme lowercaseString];
+    if (urlScheme.length 
+        && (![urlScheme isEqualToString:@"https"] && ![urlScheme isEqualToString:@"http"]) && [[UIApplication sharedApplication] canOpenURL:navigationAction.request.URL]) {
+        NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@NO};
+        [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:options completionHandler:nil];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+    
     // Developers can choose to process the navigation by the URL. For example, if the URL is https://zoom.us, developers can choose to open it in Safari or handle it in the current WKWebView by calling the block "decisionHandler(WKNavigationActionPolicyAllow)". This depends on the developer's requirements.
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@NO};
@@ -223,7 +258,10 @@
             decisionHandler(WKNavigationActionPolicyAllow);
         }
         else {
-            if (@available(iOS 10.0, *)) {
+            /**
+             A dom element like <a href=\"https://www.example.com\" target=\"_blank\">Open in New Tab</a>  would trigger the callback to go into this logic branch. And if the openURLInSystemBrowser been set to YES, we should open it in the system Webview controller. Or if set to NO, we should open it in a new ViewController in the current App. Or to use "window.open" in js context for the opening purpose.
+             */
+            if (self.openURLInSystemBrowser) {
                 NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@NO};
                 [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:options completionHandler:nil];
             }
@@ -267,6 +305,9 @@
             }
             if (dic) {
                 NSString *cmd = dic[kZMCCWebKitMessageCmdKey];
+                /**
+                 This command has been deprecated. We recommend our developers to use the dom element like <a href=\"https://www.example.com\" target=\"_blank\">Open in New Tab</a>to open the URL in a new tab, like a WebViewController or the system Webview browser. Or to use "window.open" in js context for the opening purpose.
+                 */
                 if ([cmd isEqualToString:kZMCCWebkitMessageCmdType_OpenURL]) {
                     NSString *url = dic[kZMCCWebkitMessageValueKey];
                     url = [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

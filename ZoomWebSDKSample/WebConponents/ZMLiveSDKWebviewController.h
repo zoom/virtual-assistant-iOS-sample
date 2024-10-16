@@ -12,9 +12,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
+static const NSString *kZMCCWebkitMessageCmdType_OpenURL_Key __attribute__((deprecated("This command has been deprecated. We recommend our developers to use the dom element like <a href=\"https://www.example.com\" target=\"_blank\">Open in New Tab</a>to open the URL in a new tab, like a WebViewController or the system Webview browser"))) = @"openURL";
+
 #define kZMCCWebKitMessageCmdKey                @"cmd"
 #define kZMCCWebkitMessageValueKey              @"value"
-#define kZMCCWebkitMessageCmdType_OpenURL       @"openURL"
+#define kZMCCWebkitMessageCmdType_OpenURL       kZMCCWebkitMessageCmdType_OpenURL_Key
 
 #define kZMCCMessageHandlerName_Exit            @"zoomLiveSDKMessageHandler"
 #define kZMCCMessageHandlerName_SuportHandOff   @"support_handoff"
@@ -30,6 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*!
  @brief Indicates whether to open URLs received from the JavaScript handler "commonMessageHandler" in the system browser. YES to open in the system browser, NO to open within a new view controller in the app. Default is YES.
+ 
+ Additionally, the command "openURL" of data format {"cmd":"openURL", "value":"https://zoom.us"} has been deprecated. We recommend our developers to use the dom element like <a href="https://www.example.com" target="_blank">Open in New Tab</a> to open the URL in a new tab, like a WebView controller or the system Webview browser. Or to use "window.open" in js context for the opening purpose. Thus the property openURLInSystemBrowser would still be used to determine the opening in the system browser or in a natvie Webview  controller.
+ 
+ When using the dom element like <a href="https://www.example.com" target="_blank">Open in New Tab</a>, the callback method "webView:decidePolicyForNavigationAction:decisionHandler:" would be called, our developers refer to the sample code implementation.
+ 
+ When using the "window.open()" in js context, the callback method "webView: createWebViewWithConfiguration: forNavigationAction:windowFeatures:" would be called if the callback method "webView:decidePolicyForNavigationAction:decisionHandler:" not implemented. Our developers refer to the sample code implementation.
+ 
  */
 @property (nonatomic, assign) BOOL openURLInSystemBrowser;
 

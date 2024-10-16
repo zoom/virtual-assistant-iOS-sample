@@ -14,6 +14,8 @@ import SafariServices
 
 let kZMCCWebKitMessageCmdKey =                 "cmd"
 let kZMCCWebkitMessageValueKey =               "value"
+
+@available(*, deprecated, message: "This command has been deprecated. We recommend our developers to use the dom element like <a href=\"https://www.example.com\" target=\"_blank\">Open in New Tab</a>to open the URL in a new tab, like a WebViewController or the system Webview browser. Or to use \"window.open\" in js context for the opening purpose.")
 let kZMCCWebkitMessageCmdType_OpenURL =        "openURL"
 
 let kZMCCMessageHandlerName_Exit =             "zoomLiveSDKMessageHandler"
@@ -54,6 +56,22 @@ let kZCMCCMessage_ExitCmdValue =  "close_web_vc"
         /*
         Create an exit message handler to handle the case where the JavaScript context needs to pop to the previous page in the host app.
         Also, create a common message handler to handle commands from the JavaScript context. The command message will be a JSON formatted string containing keys "cmd" and "value". Both key values are strings. The value can be a simple string or a JSON string, depending on the command type. Currently, we support one command in JSON format like {"cmd":"openURL", "value":"https://zoom.us"}. When such a message is received, developers should open a new view controller to load the URL in the value "https://zoom.us". The demo code shows several ways to process the message in the WKWebView delegate method: - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message.
+         
+         Additionally, the command "openURL" of data format {"cmd":"openURL", "value":"https://zoom.us"} has been deprecated. We recommend our developers to use the dom element like <a href=\"https://www.example.com\" target=\"_blank\">Open in New Tab</a> to open the URL in a new tab, like a WebView controller or the system Webview browser. Or to use "window.open" in js context for the opening purpose. Thus the exitHandlerScriptStr could be like below:
+         
+         let exitHandlerScriptStr = """
+         window.addEventListener('zoomCampaignSdk:ready', () => {
+           if (window.zoomCampaignSdk) {
+             window.zoomCampaignSdk.native = {
+               exitHandler: {
+                 handle: function() {
+                   window.webkit.messageHandlers.zoomLiveSDKMessageHandler.postMessage('close_web_vc');
+                 }
+               }
+             }
+           }
+         })
+         """
          */
         let exitHandlerScriptStr = """
         window.addEventListener('zoomCampaignSdk:ready', () => {
@@ -101,8 +119,14 @@ let kZCMCCMessage_ExitCmdValue =  "close_web_vc"
     
     /*!
      @brief Indicates whether to open URLs received from the JavaScript handler "commonMessageHandler" in the system browser. YES to open in the system browser, NO to open within a new view controller in the app. Default is YES.
+     
+     Additionally, the command "openURL" of data format {"cmd":"openURL", "value":"https://zoom.us"} has been deprecated. We recommend our developers to use the dom element like <a href="https://www.example.com" target="_blank">Open in New Tab</a> to open the URL in a new tab, like a WebView controller or the system Webview browser. Or to use "window.open" in js context for the opening purpose. Thus the property openURLInSystemBrowser would still be used to determine the opening in the system browser or in a natvie Webview  controller.
+     
+     When using the dom element like <a href="https://www.example.com" target="_blank">Open in New Tab</a>, the callback method "webView:decidePolicyForNavigationAction:decisionHandler:" would be called, our developers refer to the sample code implementation.
+     
+     When using the "window.open()" in js context, the callback method "webView: createWebViewWithConfiguration: forNavigationAction:windowFeatures:" would be called if the callback method "webView:decidePolicyForNavigationAction:decisionHandler:" not implemented. Our developers refer to the sample code implementation.
      */
-    var openURLInSystemBrowser: Bool
+    @objc var openURLInSystemBrowser: Bool
 
     
     lazy var webView: WKWebView = {
@@ -215,6 +239,9 @@ let kZCMCCMessage_ExitCmdValue =  "close_web_vc"
                 if let data = body.data(using: .utf8) {
                     do {
                         if let dic = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+                            /**
+                             This command has been deprecated. We recommend our developers to use the dom element like <a href=\"https://www.example.com\" target=\"_blank\">Open in New Tab</a>to open the URL in a new tab, like a WebViewController or the system Webview browser. Or to use "window.open" in js context for the opening purpose.
+                             */
                             if let cmd = dic[kZMCCWebKitMessageCmdKey] as? String, cmd == kZMCCWebkitMessageCmdType_OpenURL {
                                 // Choose to open the URL with the system default web browser (Safari)
                                 if let urlString = dic[kZMCCWebkitMessageValueKey] as? String, let url = URL(string: urlString.trimmingCharacters(in: .whitespacesAndNewlines)), UIApplication.shared.canOpenURL(url) {
@@ -260,12 +287,21 @@ let kZCMCCMessage_ExitCmdValue =  "close_web_vc"
         download.delegate = self
     }
     
-    //When logic "windown.open" excuted in js context, this callback will be recevied.
+    // When logic "windown.open" excuted in js context, this callback will be recevied.
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
-            if #available(iOS 10.0, *) {
-                let options: [UIApplication.OpenExternalURLOptionsKey: Any] = [.universalLinksOnly: false]
-                UIApplication.shared.open(url, options: options, completionHandler: nil)
+        if let url = navigationAction.request.url {
+            if (self.openURLInSystemBrowser) {
+                if (UIApplication.shared.canOpenURL(url)) {
+                    let options: [UIApplication.OpenExternalURLOptionsKey: Any] = [.universalLinksOnly: false]
+                    UIApplication.shared.open(url, options: options, completionHandler: nil)
+                }
+                else {
+                    print("error,cannot open the navigationAction url");
+                }
+            }
+            else {
+                let safariVC = SFSafariViewController(url:url)
+                self.navigationController?.pushViewController(safariVC, animated: true)
             }
         }
         return nil
@@ -280,14 +316,25 @@ let kZCMCCMessage_ExitCmdValue =  "close_web_vc"
             }
         }
         
+        // For specific URLS, like the URL with scheme "tel", as the WKWebview has no default process logic, here we need to hanlde it ourselves. We should judge the scheme is not "https" and not "http" firstly, then use system method to handle URL.
+        let urlScheme = navigationAction.request.url?.scheme
+        if let targetUrlScheme = urlScheme?.localizedLowercase, let targetUrl = navigationAction.request.url, targetUrlScheme != "http" && targetUrlScheme != "https" && UIApplication.shared.canOpenURL(targetUrl) {
+            let options:[UIApplication.OpenExternalURLOptionsKey:Any]? = [.universalLinksOnly: false]
+            UIApplication.shared.open(targetUrl, options: options!)
+            decisionHandler(.cancel)
+        }
+        
         // Developers can choose to process the navigation by the URL. For example, if the URL is https://zoom.us, developers can choose to open it in Safari or handle it in the current WKWebView by calling the block "decisionHandler(WKNavigationActionPolicyAllow)". This depends on the developer's requirements.
         if navigationAction.navigationType == .linkActivated {
             if let targetFrame = navigationAction.targetFrame, targetFrame.isMainFrame {
                 decisionHandler(.allow)
             } 
             else {
+                /**
+                 A dom element like <a href=\"https://www.example.com\" target=\"_blank\">Open in New Tab</a>  would trigger the callback to go into this logic branch. And if the openURLInSystemBrowser been set to YES, we should open it in the system Webview controller. Or if set to NO, we should open it in a new ViewController in the current App. Or to use "window.open" in js context for the opening purpose.
+                 */
                 if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
-                    if #available(iOS 10.0, *) {
+                    if (self.openURLInSystemBrowser) {
                         let openUrlOptions:[UIApplication.OpenExternalURLOptionsKey:Any] = [.universalLinksOnly:false]
                         UIApplication.shared.open(url, options: openUrlOptions, completionHandler: nil)
                     }
